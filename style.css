@@ -1,0 +1,128 @@
+body {
+  margin: 0;
+  background: black;
+  overflow: hidden;
+  font-family: 'Boogaloo', sans-serif;
+  color: white;
+}
+#container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100px;
+  height: 90px;
+  background-color: red;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  animation: pulse 1s infinite;
+  cursor: pointer;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 90px;
+  background-color: red;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: -50px;
+  left: 0;
+}
+
+.heart::after {
+  left: 50px;
+  top: 0;
+}
+
+@keyframes grow {
+  0% { transform: translate(-50%, -50%) scale(1) rotate(-45deg); }
+  100% { transform: translate(-50%, -50%) scale(3) rotate(-45deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(-45deg); }
+  50% { transform: translate(-50%, -50%) scale(1.1) rotate(-45deg); }
+}
+
+.heart.growing {
+  animation: grow 1.5s forwards;
+}
+
+.particle {
+  position: absolute;
+  width: 20px;
+  height: 18px;
+  background-color: rgb(255, 16, 8);
+  transform: rotate(-45deg);
+  pointer-events: none;
+}
+
+.particle::before,
+.particle::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 18px;
+  background-color: rgb(255, 0, 0);
+  border-radius: 50%;
+}
+
+.particle::before {
+  top: -10px;
+  left: 0;
+}
+
+.particle::after {
+  left: 10px;
+  top: 0;
+}
+
+#message {
+    font-family: 'Boogaloo', sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  background: rgba(255, 255, 255, 0);
+  padding: 20px 30px;
+  border-radius: 15px;
+  display: none;
+  z-index: 10;
+  text-align: center;
+}
+
+#fondo-estrellas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+}
+
+@keyframes latido {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+#message.visible {
+  display: block;
+  opacity: 1;
+  animation: latido 1.5s ease-in-out infinite;
+}
